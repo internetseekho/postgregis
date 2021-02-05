@@ -12,15 +12,11 @@ Distance Finder
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Distance to {{ destination }} is:</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                {{ distance }} km
             </div>
         </div>
     </div>
@@ -37,10 +33,14 @@ Distance Finder
 
 </form>
 <br>
+{{ map|safe }}
+
+{% if request.POST and distance is not None %}
+
 <script>
     $(window).on("load", function () {
-        $("#exampleModal").model("show");
+        $("#exampleModal").modal("show");
     });
 </script>
-{{ map|safe }}
+{% endif %}
 {% endblock content %}

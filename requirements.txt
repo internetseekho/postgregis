@@ -1,0 +1,25 @@
+aiohttp==3.7.3
+asgiref==3.3.1
+async-timeout==3.0.1
+attrs==20.3.0
+branca==0.4.2
+certifi==2020.12.5
+chardet==3.0.4
+Django==3.1.6
+-e git://github.com/maraujop/django-crispy-forms.git@c76cfe8e97ca2e33eb5a0761207012814f4b924d#egg=django_crispy_forms
+folium==0.12.1
+geographiclib==1.50
+geoip2==4.1.0
+geopy==2.1.0
+idna==2.10
+Jinja2==2.11.3
+MarkupSafe==1.1.1
+maxminddb==2.0.3
+multidict==5.1.0
+numpy==1.20.0
+pytz==2021.1
+requests==2.25.1
+sqlparse==0.4.1
+typing-extensions==3.7.4.3
+urllib3==1.26.3
+yarl==1.6.3

@@ -3,17 +3,21 @@ from .models import Measurement
 from .forms import MeasurementModelForm
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
-from .utils import get_geo, get_center_coordinates, get_zoom
+from .utils import get_geo, get_center_coordinates, get_zoom, get_ip_address
 import folium
 
 def calculate_distance_view (request) :
     
-    obj        = get_object_or_404(Measurement, id=1)
-    form       = MeasurementModelForm(request.POST or None)
-    geolocator = Nominatim(user_agent='gis')
+    # initial values 
+    distance    = None
+    destination = None
+    obj         = get_object_or_404(Measurement, id=1)
+    form        = MeasurementModelForm(request.POST or None)
+    geolocator  = Nominatim(user_agent='gis')
     
     # temp ip address for testing
     ip                      = "66.57.97.8"
+    # ip                      = get_ip_address(request)
     country, city, lat, lon = get_geo(ip)
     location                = geolocator.geocode(city)
     
@@ -57,9 +61,10 @@ def calculate_distance_view (request) :
     m = m._repr_html_()
 
     context = {
-        'distance' : obj,
-        'form'     : form,
-        'map'      : m,
+        'distance'    : distance,
+        'form'        : form,
+        'map'         : m,
+        'destination' : destination,
     }
 
     return render(request, "measurements/main.html", context)
